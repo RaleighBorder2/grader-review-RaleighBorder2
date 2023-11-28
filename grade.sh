@@ -22,9 +22,14 @@ then
   javac -cp $CPATH *.java
   java -cp $CPATH org.junit.runner.JUnitCore TestListExamples > junitOutput.txt
 
-  [[ `grep -c "Failures: 2" junitOutput.txt -eq '1'` ]] && echo "2 failures, 0%"
-  [[ `grep -c "Failures: 1" junitOutput.txt -eq '1'` ]] && echo "1 failure, 50%"
-  [[ `grep -c "OK (2 tests)" junitOutput.txt -eq '1'` ]] && echo "No failures, 100%"
+  echo "YOUR GRADE:"
+
+  [[ `grep -c "initializationError" junitOutput.txt` -eq '1' ]] && echo "compilation error, 0%"
+  [[ `grep -c "Failures: 2" junitOutput.txt` -eq '1' ]] && echo "2 failures, 0%"
+  [[ `grep -c "Tests run: 2,  Failures: 1" junitOutput.txt` -eq '1' ]] && echo "1 failure, 50%"
+  [[ `grep -c "OK (2 tests)" junitOutput.txt` -eq '1' ]] && echo "No failures, 100%"
 fi
 
 [[ $failCode == 4 ]] && echo "incorrect file, 0%"
+
+# heyyyyyyy
